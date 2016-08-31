@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project FrogGame10r">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+    	<delete file="dist/app.jar"></delete>
+    	<path id="build.classpath">
+    	  <fileset dir="${basedir}">
+    	     <include name="libs/*.jar"/>
+    	  </fileset>
+    	</path>
+    	<pathconvert property="manifest.classpath" pathsep=" ">
+    	  <path refid="build.classpath"/>
+    	  <mapper>
+    	    <chainedmapper>
+    	       <flattenmapper/>
+    	       <globmapper from="*.jar" to="*.jar"/>
+    	    </chainedmapper>
+    	  </mapper>
+    	</pathconvert>
+        <jar destfile="dist/app.jar">
+            <manifest>
+                <attribute name="Main-Class" value="br.guilherme.rmr.core.Gameplay"/>
+                <attribute name="Class-Path" value="${manifest.classpath}"/>
+            </manifest>
+            <fileset dir="bin"/>
+        </jar>
+    </target>
+</project>
